@@ -9,7 +9,9 @@
         label_field: ".image-label",
         label_default: "Choose File",
         label_selected: "Change File",
-        no_label: false
+        no_label: false,
+        onSetElement: function(){
+         }
       }, options);
 
       // Check if FileReader is available
@@ -32,9 +34,11 @@
                   $(settings.preview_box).css("background-image", "url("+loadedFile.result+")");
                   $(settings.preview_box).css("background-size", "cover");
                   $(settings.preview_box).css("background-position", "center center");
+                   settings.onSetElement();
                 } else if (file.type.match('audio')) {
                   // Audio
                   $(settings.preview_box).html("<audio controls><source src='" + loadedFile.result + "' type='" + file.type + "' />Your browser does not support the audio element.</audio>");
+                   settings.onSetElement();
                 } else {
                   alert("This file type is not supported yet.");
                 }
